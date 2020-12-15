@@ -1,13 +1,15 @@
 FROM node:15.4.0-alpine3.0
 
-RUN mkdir -p /home/node/app/
+RUN mkdir -p /src/app
 
-WORKDIR /home/node/app
+WORKDIR /src/app
 
-COPY  . .
+COPY package.json /src/app/package.json
 
 RUN npm install
 
+COPY . /src/app
+
 EXPOSE 3000
 
-CMD [ "npm", "run", "start" 
+CMD [ "npm", "start" ]
