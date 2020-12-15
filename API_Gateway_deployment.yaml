@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api
+  name: api
+  namespace: vote
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - image: pdidit1/API_Gateway
+        name: api
+        ports:
+        - containerPort: 8000
+          name: api
+        resources:
+          limits:
+            memory: "20Mi"
+            cpu: "250m"

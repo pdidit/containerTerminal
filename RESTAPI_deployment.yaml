@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: restapi
+  name: restapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: restapi
+  template:
+    metadata:
+      labels:
+        app: restapi
+    spec:
+      containers:
+      - image: pdidit1/middleware
+        name: restapi
+        resources:
+          limits:
+            memory: "20Mi"
+            cpu: "250m"

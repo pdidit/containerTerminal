@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - image: pdidit1/web_server
+        name: web
+        ports:
+        - containerPort: 80
+          name: web
+        resources:
+          limits:
+            memory: "20Mi"
+            cpu: "250m"
