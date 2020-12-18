@@ -6,8 +6,6 @@ spec:
   selector:
     matchLabels:
       app: db
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
@@ -20,7 +18,7 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: db_secret
+              name: db-secret
               key: password
         ports:
         - containerPort: 3306
@@ -28,11 +26,14 @@ spec:
         volumeMounts:
         - name: mysql-volume
           mountPath: /var/lib/mysql
-        resources:
-          limits:
-            memory: "20Mi"
-            cpu: "250m"
       volumes:
       - name: mysql-volume
         persistentVolumeClaim:
           claimName: mysql-claim
+          
+          
+          
+          resources:
+          limits:
+            memory: "20Mi"
+            cpu: "250m"

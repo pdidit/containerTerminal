@@ -17,6 +17,10 @@ spec:
       containers:
       - image: pdidit1/middleware
         name: restapi
+        ports:
+        - containerPort: 3000
+
+        
         resources:
           limits:
             memory: "20Mi"
